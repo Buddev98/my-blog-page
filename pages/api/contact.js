@@ -24,9 +24,10 @@ export default async function hanlder(req, res) {
     console.log(newMessage);
 
     let client;
+    const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.ornto54.mongodb.net/${process.env.mongodb_database}`;
 
     try {
-      client = await MongoClient.connect('mongodb+srv://nodeExpressProject:nodeExpressProject@nodeexpressprojects.ornto54.mongodb.net/my-site');
+      client = await MongoClient.connect(connectionString);
     } catch (error) {
       res.status(500).json({ message: 'Could not connect to the database'});
       return;
